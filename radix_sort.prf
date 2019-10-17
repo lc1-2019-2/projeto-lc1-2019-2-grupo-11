@@ -1,4 +1,33 @@
 (radix_sort
+ (radixsort_permutes 0
+  (radixsort_permutes-1 nil 3780246306
+   ("" (use "permutations_is_transitive[T]")
+    (("" (expand radixsort)
+      (("" (skeep)
+        (("" (use "merge_sort_is_permutation[T, <<]")
+          (("" (use "merge_sort_is_permutation[T, <=]")
+            ((""
+              (inst-cp -3 "merge_sort[T, <<](merge_sort[T, <=](l))"
+               "merge_sort[T, <=](l)" "l")
+              (("" (assert) nil nil)) nil))
+            nil))
+          nil))
+        nil))
+      nil))
+    nil)
+   ((radixsort const-decl "list[T]" radix_sort nil)
+    (merge_sort_is_permutation formula-decl nil mergesort nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (PRED type-eq-decl nil defined_types nil)
+    (total_preorder? const-decl "bool" total_preorder nil)
+    (<< formal-const-decl "(total_preorder?[T])" radix_sort nil)
+    (merge_sort def-decl "list[T]" mergesort nil)
+    (<= formal-const-decl "(total_preorder?[T])" radix_sort nil)
+    (list type-decl nil list_adt nil)
+    (T formal-type-decl nil radix_sort nil)
+    (permutations_is_transitive formula-decl nil sorting_aux nil))
+   shostak))
  (radixsort_sorts_TCC1 0
   (radixsort_sorts_TCC1-1 nil 3777655189
    ("" (typepred "<<" "<=")
@@ -143,5 +172,12 @@
     (total_preorder? const-decl "bool" total_preorder nil)
     (<< formal-const-decl "(total_preorder?[T])" radix_sort nil)
     (<= formal-const-decl "(total_preorder?[T])" radix_sort nil))
-   nil)))
+   nil))
+ (radixsort_sorts 0
+  (radixsort_sorts-1 nil 3780245582
+   ("" (measure-induct "length(l)" "l")
+    (("1" (skeep) (("1" (postpone) nil nil)) nil)
+     ("2" (skeep) (("2" (postpone) nil nil)) nil))
+    nil)
+   nil shostak)))
 
