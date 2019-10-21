@@ -261,13 +261,7 @@
     (<< formal-const-decl "(total_preorder?[T])" radix_sort nil)
     (<= formal-const-decl "(total_preorder?[T])" radix_sort nil))
    nil))
- (radixsort_sorts 0
-  (radixsort_sorts-4 "backup2" 3780677500
-   ("" (measure-induct "length(l)" "l")
-    (("1" (skeep) (("1" (postpone) nil nil)) nil)
-     ("2" (use "lex_is_total_preorder") nil nil))
-    nil)
-   nil shostak)
+ (radixsort_sorts 1
   (radixsort_sorts-3 "loucura" 3780333283
    ("" (measure-induct "length(l)" "l")
     (("1" (skeep)

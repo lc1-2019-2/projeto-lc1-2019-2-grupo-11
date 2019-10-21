@@ -43,6 +43,11 @@ IMPORTING sorting, mergesort
  	(x << y AND NOT (y << x))  OR 
 	(( x << y AND y << x) AND x <= y )
 
+% Lexicographical order is total preorder
+ lex_is_total_preorder : LEMMA
+ total_preorder?[T](lex)
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%% Question 3  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
