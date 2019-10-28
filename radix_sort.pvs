@@ -23,7 +23,6 @@ BEGIN
 IMPORTING sorting, mergesort
 
 
-
 % Radixsort mege-sorts a list of elements of type T by the total preorders
 % <= and << 
  radixsort(l : list[T]) : list[T] = merge_sort[T,<<](merge_sort[T,<=](l))
@@ -58,8 +57,8 @@ IMPORTING sorting, mergesort
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % The second lemma states that radixsort indeed sorts the input list
-% according to the total preorder lex. 
-  radixsort_sorts : CONJECTURE
+% According to the total preorder lex. 
+ radixsort_sorts : CONJECTURE
   FORALL(l : list[T]):
    is_sorted?[T,lex](radixsort(l))
 
