@@ -7,12 +7,20 @@
 \usepackage[all]{xy}
 \usepackage{color}
 
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{todonotes}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{hyperref}
+
 \title{{\large Universidade de Brasília \\ Instituto de Ciências Exatas \\
 Departamento de Ciência da Computação} \\[1cm]
-117536 - Projeto e Análise de Algoritmos Turma: B\\[.5cm]
-Relatório sobre {\bf incluir tema}}
-\author{nome1 - matrícula1 \\
-        nome2 - matrícula2}
+117536 - Lógica Computacional Turma: A\\[.5cm]
+Relatório sobre {\bf Radix Sort}}
+\author{Alberto Tavares Duarte Neto - 18/0011707}
 \date{\today}
 
 \begin{document}
@@ -20,13 +28,198 @@ Relatório sobre {\bf incluir tema}}
 
 \section{Introdução}
 
-\section{Apresentação do Problema}
+Este é o relatório do trabalho da disciplina Lógica Computacional 1, com o objetivo de estudar o assistente de provas PVS através da realização da verificação formal da corretude do algoritmo de ordenação Radixsort.
 
-\subsection{Análise assintótica}
+Para a implementação do radix sort é necessário outro algoritmo de ordenação. Neste trabalho foi utilizado o mergesort para tal, cujas algumas propriedades foram provadas em semestres anteriores por outras turmas.
 
-\subsection{Correção da solução proposta}
+\section{Apresentação do Problema e Solução}
+
+radix sort é um algoritmo de ordenação que... (completar)
+
+Em outras palavras, utilizando as definições dadas, devemos provar:
+
+\begin{enumerate}
+    \item permutations[T](merge\_sort(l), l)
+    \item permutations[T](radixsort(l), l)
+    \item is\_sorted?[T, lex](radixsort(l))
+\end{enumerate}
+
+onde l é uma lista do tipo abstrato T.
+
+\subsection{Questão 1}
+
+Nesta questão devemos provar que o merge sort é uma permutação da lista.
+
+\subsubsection{Lemas Utilizados}
+
+\begin{itemize}
+    \item merge\_occurence
+    \item length\_prefix
+    \item length\_suffix
+    \item app\_prefix\_sum
+    \item occurrences\_of\_app
+\end{itemize}
+
+\subsubsection{Solução}
+
+A estratégia de prova utilizada foi realizar uma indução no tamanho da lista, utilizando o fato de que, ao expandir a definição de merge sort,
+temos o merge do prefixo e do sufixo da lista que são de fato menores que a lista, se encaixando na hipótese de indução.
+
+Temos então o seguinte sequente ao expandir as definições de permutations e merge sort:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1 \textwidth]{seq1-1.png}
+    \caption{}
+    \label{}
+\end{figure}
+
+Onde x é uma lista com elementos do tipo T, e x\_1 é um elemento do tipo T.
+
+O caso onde 
+
+\begin{equation}
+    length(x) <= 1
+\end{equation}
+
+é trivial, então trabalharemos o caso 
+
+\begin{equation}
+    length(x) > 1
+\end{equation}
+
+Pelo lema (botar numero) nós temos:
+
+\begin{equation}
+    occurrences(merge(l1, l2))(x) = occurences(l1)(x) + occurrences(l2)(x)
+\end{equation}{}
+
+Podemos instanciar este com o prefixo e suffixo de l nas listas l1 e l2, respectivamente, e substituir a igualdade no consequente.
+
+Assim obtemos:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1 \textwidth]{seq1-2.png}
+    \caption{}
+    \label{}
+\end{figure}
+
+Neste sequente fica clara a utilização da hipótese de indução; é fácil
+ver, utilizando os lemas (n e m), que para uma lista de tamanho maior que 1 seu prefixo e sufixo terão tamanho menor que a lista original.
+
+Portanto, aplicando a hipótese indutiva ao prefixo e sufixo, temos que as ocorrências do merge sort do prefixo e sufixo são iguais às ocorrências do prefixo e sufixo, respectivamente, e aplicando isto ao consequente:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1 \textwidth]{seq1-3.png}
+    \caption{}
+    \label{}
+\end{figure}
+
+Por fim devemos utilizar dois lemas: (n) e (m).
+Desta forma tempos que uma lista x é igual ao append de seu prefixo e sufixo; e as ocorrências de um append de duas listas l1 e l2 são iguais às da soma das ocorrências de l1 e l2.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1 \textwidth]{seq1-4.png}
+    \caption{}
+    \label{}
+\end{figure}
+
+Podemos aplicar estes dois fatos à equação no consequente, terminando a prova.
+
+
+\subsection{Questão 2}
+
+\subsubsection{Lemas Utilizados}
+
+\begin{itemize}
+    \item permutations\_is\_transitive
+    \item merge\_sort\_is\_permutation
+\end{itemize}
+
+\subsubsection{Solução}
+
+% sequente expansao radixsort
+
+A prova desta questão é simples e segue diretamente da questão anterior. Utilizando o lema, agora provado, de que merge sort permuta a lista l nós podemos realizar duas instâncias deste:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1 \textwidth]{seq2-1.png}
+    \caption{}
+    \label{}
+\end{figure}
+
+Então utilizando a transitividade da permutação, que nos é garantida pelo lema (n), obtemos o resultado
+
+\begin{equation}
+    permutations(merge\_sort[T, <<](merge\_sort[T, <=](l)), l)
+\end{equation}
+
+que é exatamente o que queríamos provar.
+
+\subsection{Questão 3}
+
+Queremos mostrar que radixsort está ordenado segundo a ordem lexicográfica lex. A ideia da demonstração é utilizar o fato de que (...)
+
+\subsubsection{Lemas Utilizados}
+
+\begin{itemize}
+    \item merge\_sort\_is\_sorted
+    \item merge\_sort\_is\_conservative
+    \item is\_sorted\_implies\_monotone
+\end{itemize}
+
+\subsubsection{Solução}
+
+Após expandir as definições de radixsort, is\_sorted? e lex, temos:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1 \textwidth]{seq3-11.png}
+    \caption{}
+    \label{}
+\end{figure}
+
+ou seja, se k e 1 + k são índices da lista então os elementos com estes índices estão ordenados segundo a ordem lexicográfica.
+
+Para proceder com a prova podemos utilizar o lema da ordenação do merge sort com a ordem <<; com isso podemos mostrar que, ao aplicar radix sort a uma lista, o elemento do índice k é menor que o elemento de índice 1 + k segundo esta ordem.
+
+Portanto, aplicando simplificações proposicionais, obtemos:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1 \textwidth]{seq3-2.png}
+    \caption{}
+    \label{}
+\end{figure}
+
+
+A fórmula -3, que estava no consequente, foi para o antecedente negado após a simplificação proposicional, e com isso temos que os elementos de índice k e 1 + k são iguais segundo a ordem <<. 
+
+Para que estes elementos estejam ordenados segundo a ordem <=, devemos ter que o merge sort é um algoritmo de ordenação estável; ou seja, se dois elementos são iguais então eles mantêm sua ordem relativa após a aplicação do algoritmo.
+
+Utilizando o lema da estabilidade do merge sort temos, então:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1 \textwidth]{seq3-3.png}
+    \caption{}
+    \label{}
+\end{figure}
+
+É fácil de imaginar que, se i < j, o elemento de índice i é menor segundo << que o elemento de índice j após aplicarmos merge sort com a ordem <= na lista l. 
+
+Isso é garantido por lema, de modo que este tem de hipótese que a lista l estar ordenada mas temos, também por lema, que a lista retornada pelo merge sort é ordenada.
+
+Então a demonstração está concluída.
+
 
 \section{Conclusão}
+
+
 
 \end{document}
 
