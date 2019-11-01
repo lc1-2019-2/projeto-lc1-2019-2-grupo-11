@@ -21,18 +21,18 @@
         nil))
       nil))
     nil)
-   ((radixsort const-decl "list[T]" radix_sort nil)
-    (list type-decl nil list_adt nil)
-    (merge_sort def-decl "list[T]" mergesort nil)
-    (permutations_is_transitive formula-decl nil sorting_aux nil)
-    (<< formal-const-decl "(total_preorder?[T])" radix_sort nil)
-    (merge_sort_is_permutation formula-decl nil mergesort nil)
-    (T formal-type-decl nil radix_sort nil)
-    (boolean nonempty-type-decl nil booleans nil)
-    (bool nonempty-type-eq-decl nil booleans nil)
-    (PRED type-eq-decl nil defined_types nil)
+   ((<= formal-const-decl "(total_preorder?[T])" radix_sort nil)
     (total_preorder? const-decl "bool" total_preorder nil)
-    (<= formal-const-decl "(total_preorder?[T])" radix_sort nil))
+    (PRED type-eq-decl nil defined_types nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (T formal-type-decl nil radix_sort nil)
+    (merge_sort_is_permutation formula-decl nil mergesort nil)
+    (<< formal-const-decl "(total_preorder?[T])" radix_sort nil)
+    (permutations_is_transitive formula-decl nil sorting_aux nil)
+    (merge_sort def-decl "list[T]" mergesort nil)
+    (list type-decl nil list_adt nil)
+    (radixsort const-decl "list[T]" radix_sort nil))
    shostak))
  (lex_is_total_preorder 0
   (lex_is_total_preorder-1 nil 3780675846
@@ -128,46 +128,46 @@
  (radixsort_sorts 0
   (radixsort_sorts-1 nil 3781217073
    ("" (skeep)
-    (("" (expand radixsort)
-      (("" (expand is_sorted?)
+    (("" (expand "radixsort")
+      (("" (expand "is_sorted?")
         (("" (skeep)
           (("" (lemma "merge_sort_is_sorted[T, <<]")
             (("" (inst -1 "merge_sort[T, <=](l)")
-              (("" (expand is_sorted?)
+              (("" (expand "is_sorted?" -1)
                 (("" (inst -1 "k")
                   (("" (assert)
                     (("" (expand lex)
-                      (("" (assert)
-                        (("" (prop)
+                      (("" (prop)
+                        ((""
+                          (lemma "merge_sort_is_conservative[T, <<]")
                           ((""
-                            (lemma "merge_sort_is_conservative[T, <<]")
-                            ((""
-                              (inst -1 "merge_sort[T, <=](l)" "k"
-                               "1 + k")
+                            (inst -1 "merge_sort[T, <=](l)" "k"
+                             "1 + k")
+                            (("" (assert)
                               ((""
-                                (assert)
+                                (hide -2 -3 -4)
                                 ((""
                                   (skeep)
                                   ((""
-                                    (hide -4 -6)
+                                    (replaces -2)
                                     ((""
-                                      (replace -2)
+                                      (replaces -2)
                                       ((""
-                                        (replace -3)
+                                        (lemma
+                                         "is_sorted_implies_monotone[T, <=]")
                                         ((""
-                                          (lemma
-                                           "merge_sort_is_sorted[T, <=]")
+                                          (inst
+                                           -1
+                                           "merge_sort[T, <=](l)")
                                           ((""
-                                            (inst -1 "l")
+                                            (lemma
+                                             "merge_sort_is_sorted[T, <=]")
                                             ((""
-                                              (lemma
-                                               "is_sorted_implies_monotone[T, <=]")
+                                              (inst -1 "l")
                                               ((""
-                                                (inst
-                                                 -1
-                                                 "merge_sort[T, <=](l)")
+                                                (assert)
                                                 ((""
-                                                  (assert)
+                                                  (hide -1)
                                                   ((""
                                                     (inst -1 "j" "i")
                                                     nil
@@ -216,12 +216,12 @@
     (length def-decl "nat" list_props nil)
     (below type-eq-decl nil nat_types nil)
     (lex const-decl "bool" radix_sort nil)
-    (+ const-decl "[numfield, numfield -> numfield]" number_fields nil)
-    (numfield nonempty-type-eq-decl nil number_fields nil)
-    (is_sorted_implies_monotone formula-decl nil sorting nil)
+    (merge_sort_is_conservative formula-decl nil mergesort nil)
     (real_lt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil)
-    (merge_sort_is_conservative formula-decl nil mergesort nil)
+    (is_sorted_implies_monotone formula-decl nil sorting nil)
+    (numfield nonempty-type-eq-decl nil number_fields nil)
+    (+ const-decl "[numfield, numfield -> numfield]" number_fields nil)
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
     (int_minus_int_is_int application-judgement "int" integers nil)
