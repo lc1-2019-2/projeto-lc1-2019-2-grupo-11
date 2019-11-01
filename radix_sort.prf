@@ -1,32 +1,38 @@
 (radix_sort
  (radixsort_permutes 0
   (radixsort_permutes-1 nil 3780246306
-   ("" (use "permutations_is_transitive[T]")
+   ("" (skeep)
     (("" (expand radixsort)
-      (("" (skeep)
-        (("" (use "merge_sort_is_permutation[T, <<]")
-          (("" (use "merge_sort_is_permutation[T, <=]")
-            ((""
-              (inst-cp -3 "merge_sort[T, <<](merge_sort[T, <=](l))"
-               "merge_sort[T, <=](l)" "l")
-              (("" (assert) nil nil)) nil))
+      (("" (lemma "merge_sort_is_permutation[T, <=]")
+        (("" (inst -1 "l")
+          (("" (lemma "merge_sort_is_permutation[T, <<]")
+            (("" (inst -1 "merge_sort[T, <=](l)")
+              (("" (lemma "permutations_is_transitive[T]")
+                (("" (assert)
+                  ((""
+                    (inst -1 "merge_sort[T, <<](merge_sort[T, <=](l))"
+                     "merge_sort[T, <=](l)" "l")
+                    (("" (assert) nil nil)) nil))
+                  nil))
+                nil))
+              nil))
             nil))
           nil))
         nil))
       nil))
     nil)
    ((radixsort const-decl "list[T]" radix_sort nil)
+    (list type-decl nil list_adt nil)
+    (merge_sort def-decl "list[T]" mergesort nil)
+    (permutations_is_transitive formula-decl nil sorting_aux nil)
+    (<< formal-const-decl "(total_preorder?[T])" radix_sort nil)
     (merge_sort_is_permutation formula-decl nil mergesort nil)
+    (T formal-type-decl nil radix_sort nil)
     (boolean nonempty-type-decl nil booleans nil)
     (bool nonempty-type-eq-decl nil booleans nil)
     (PRED type-eq-decl nil defined_types nil)
     (total_preorder? const-decl "bool" total_preorder nil)
-    (<< formal-const-decl "(total_preorder?[T])" radix_sort nil)
-    (list type-decl nil list_adt nil)
-    (<= formal-const-decl "(total_preorder?[T])" radix_sort nil)
-    (merge_sort def-decl "list[T]" mergesort nil)
-    (T formal-type-decl nil radix_sort nil)
-    (permutations_is_transitive formula-decl nil sorting_aux nil))
+    (<= formal-const-decl "(total_preorder?[T])" radix_sort nil))
    shostak))
  (lex_is_total_preorder 0
   (lex_is_total_preorder-1 nil 3780675846
